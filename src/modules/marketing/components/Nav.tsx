@@ -27,7 +27,7 @@ export function Nav() {
             <div className='flex items-center justify-between'>
                 <img src='/logo.png' alt='WorkSpeed' className='w-30' />
 
-                <ul className='hidden items-center justify-center gap-5 font-medium text-gray lg:flex'>
+                <ul className='hidden items-center justify-center gap-8 font-medium text-gray lg:flex'>
                     {navLinks.map((link) => (
                         <li
                             key={link}
