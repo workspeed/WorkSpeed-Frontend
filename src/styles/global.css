@@ -2,15 +2,27 @@
 @import "./animations.css";
 
 @theme {
-    --color-primary: #000;
-    --color-secondary: #000;
+    --color-primary: #21153F;
+    --color-secondary: #F2811D;
 
     --color-green: #039A47;
     --color-red: #ED0707;
-    --color-orange: #F2811D;
+    --color-orange: #DF6900;
     --color-yellow: #F8CB38;
+    --color-gray: #626975;
 
     /*** Backgrounds ***/
-    --background-white: #FBFCFD;
-    --background: #F0F2F5;
+    --color-background-white: #F7F7F7;
+    --color-background: #EEEFF4;
+
+
+    /*** Gradients ***/
+    --gradient-primary: linear-gradient(90deg, #D76F00 0%, #613EBE 100%);
+}
+
+@utility text-gradient-primary {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
