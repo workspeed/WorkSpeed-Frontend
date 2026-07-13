@@ -3,11 +3,12 @@ import { RouterProvider } from 'react-router'
 import { router } from '@/router'
 
 function App() {
-  return 
+  return(
   <>
     <RouterProvider router={router}/>
     <Analytics />
   </>
+  )
 }
 
 export default App
