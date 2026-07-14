@@ -3,9 +3,9 @@ import HorizontalLine from './ui/HorizontalLine'
 
 export function HeroSection() {
   return (
-    <LeadingPageLayout className='py-24'>
+    <LeadingPageLayout className='py-10 lg:py-24'>
       <header className="flex flex-col items-center justify-center py-24 mx-auto lg:max-w-4xl md:max-w-2xl max-w-xl gap-7 text-center">
-        <h1 className="flex flex-col items-center gap-2 text-center text-5xl font-bold md:text-7xl">
+        <h1 className="flex flex-col items-center gap-2 text-center text-3xl md:text-5xl lg:text-7xl font-bold">
           <span>Mais que um ERP</span>
           <span>
             Uma plataforma feita
@@ -18,7 +18,7 @@ export function HeroSection() {
           sistema acompanhe a forma como sua empresa trabalha.
         </p>
 
-        <button className="bg-orange text-white px-7 py-3 rounded-full font-semibold hover:bg-orange/80 transition-colors cursor-not-allowed">
+        <button className="bg-orange text-white px-4 md:px-7 py-2 md:py-3 rounded-full font-semibold hover:bg-orange/80 transition-colors cursor-not-allowed">
           Faça um teste grátis
         </button>
       </header>
