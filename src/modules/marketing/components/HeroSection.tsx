@@ -1,11 +1,17 @@
 import LeadingPageLayout from '../../../layouts/LeadingPageLayout'
+import HorizontalLine from './ui/HorizontalLine'
 
 export function HeroSection() {
   return (
     <LeadingPageLayout className='py-24'>
-      <header className="flex flex-col items-center justify-center py-24 mx-auto lg:max-w-4xl md:max-w-2xl max-w-xl gap-5 text-center">
-        <h1 className="text-5xl md:text-7xl font-bold">Mais que um ERP <br /> Uma plataforma feita
-        <span className="text-gradient-primary"> para sua empresa.</span></h1>
+      <header className="flex flex-col items-center justify-center py-24 mx-auto lg:max-w-4xl md:max-w-2xl max-w-xl gap-7 text-center">
+        <h1 className="flex flex-col items-center gap-2 text-center text-5xl font-bold md:text-7xl">
+          <span>Mais que um ERP</span>
+          <span>
+            Uma plataforma feita
+            <span className="text-gradient-primary"> para sua empresa.</span>
+          </span>
+        </h1>
 
         <p className="text-gray text-base md:text-xl">
           A WorkSpeed personaliza módulos, processos e identidade visual para que seu 
@@ -16,6 +22,8 @@ export function HeroSection() {
           Faça um teste grátis
         </button>
       </header>
+
+      <HorizontalLine />
     </LeadingPageLayout>
   )
 }

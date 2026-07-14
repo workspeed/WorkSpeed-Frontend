@@ -6,7 +6,7 @@ type LeadingPageLayoutProps = {
 
 export default function LeadingPageLayout({ children, className }: LeadingPageLayoutProps) {
     return (
-        <div className={`bg-background ${className}`}>
+        <div className={`bg-background px-26 mx-auto ${className}`}>
             <Nav/>
             {children}
         </div>
