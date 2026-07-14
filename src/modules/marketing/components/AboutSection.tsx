@@ -111,21 +111,23 @@ const TAB_CONTENT: Record<TabLabel, TabContent> = {
 
 function AdaptationMetrics() {
     return (
-        <div className='mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:items-stretch lg:grid-cols-1 xl:grid-cols-3'>
+        <div className='mt-6 grid w-full grid-cols-3 gap-2 text-left sm:mt-8 sm:items-stretch sm:gap-4 lg:grid-cols-1 xl:grid-cols-3'>
             {ADAPTATION_METRICS.map((metric) => (
                 <div
                     key={metric.label}
-                    className='group relative flex h-full min-h-44 flex-col overflow-hidden rounded-2xl bg-white p-5 ring-1 ring-black/5 transition-shadow hover:shadow-md'
+                    className='group relative flex h-full min-h-22 flex-col overflow-hidden rounded-xl bg-white p-2.5 ring-1 ring-black/5 transition-shadow hover:shadow-md sm:min-h-44 sm:rounded-2xl sm:p-5'
                 >
-                    <div className={`absolute inset-x-0 top-0 h-1 ${metric.accentBar}`} />
+                    <div className={`absolute inset-x-0 top-0 h-0.5 sm:h-1 ${metric.accentBar}`} />
 
-                    <p className={`mt-4 h-9 shrink-0 text-3xl font-bold tracking-tight ${metric.accentText}`}>
+                    <p className={`mt-2 shrink-0 text-base font-bold tracking-tight sm:mt-4 sm:h-9 sm:text-3xl ${metric.accentText}`}>
                         {metric.value}
                     </p>
-                    <p className='mt-2 min-h-10 shrink-0 text-sm font-semibold leading-snug text-primary'>
+                    <p className='mt-1 line-clamp-2 shrink-0 text-[10px] font-semibold leading-tight text-primary sm:mt-2 sm:min-h-10 sm:text-sm sm:leading-snug'>
                         {metric.label}
                     </p>
-                    <p className='mt-1 min-h-10 flex-1 text-xs leading-relaxed text-gray'>{metric.detail}</p>
+                    <p className='mt-1 hidden min-h-10 flex-1 text-xs leading-relaxed text-gray sm:block'>
+                        {metric.detail}
+                    </p>
                 </div>
             ))}
         </div>
@@ -136,12 +138,12 @@ function TabPanel({ content, accentColor }: { content: TabContent; accentColor: 
     const accentText = accentColor.replace('bg-', 'text-')
 
     return (
-        <div className='animate-tab-content-in px-4 py-5 sm:px-7 sm:py-6'>
-            <div className='mb-4 flex flex-wrap items-center gap-2 sm:mb-5'>
-                <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${accentColor} text-white`}>
+        <div className='animate-tab-content-in px-3 py-3 sm:px-7 sm:py-6'>
+            <div className='mb-3 flex flex-wrap items-center gap-2 sm:mb-5'>
+                <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold sm:px-2.5 sm:py-1 sm:text-xs ${accentColor} text-white`}>
                     {content.badge}
                 </span>
-                <div className='flex flex-wrap gap-1.5'>
+                <div className='hidden flex-wrap gap-1.5 sm:flex'>
                     {content.modules.map((module) => (
                         <span
                             key={module}
@@ -153,22 +155,22 @@ function TabPanel({ content, accentColor }: { content: TabContent; accentColor: 
                 </div>
             </div>
 
-            <div className='mb-4 sm:mb-5'>
-                <h4 className='text-base font-bold text-primary sm:text-lg'>{content.title}</h4>
-                <p className='text-sm text-gray'>{content.description}</p>
+            <div className='mb-3 sm:mb-5'>
+                <h4 className='text-sm font-bold text-primary sm:text-lg'>{content.title}</h4>
+                <p className='mt-0.5 hidden text-sm text-gray sm:block'>{content.description}</p>
             </div>
 
-            <div className='mb-4 grid grid-cols-1 gap-3 sm:mb-5 sm:grid-cols-3'>
+            <div className='mb-0 grid grid-cols-3 gap-1.5 sm:mb-5 sm:gap-3'>
                 {content.stats.map((stat) => (
-                    <div key={stat.label} className='rounded-xl bg-background p-3'>
-                        <p className='text-xs text-gray'>{stat.label}</p>
-                        <p className='mt-1 text-sm font-bold text-primary sm:text-base'>{stat.value}</p>
-                        <p className={`mt-0.5 text-xs font-medium ${accentText}`}>{stat.trend}</p>
+                    <div key={stat.label} className='rounded-lg bg-background p-2 sm:rounded-xl sm:p-3'>
+                        <p className='line-clamp-2 text-[9px] leading-tight text-gray sm:line-clamp-none sm:text-xs'>{stat.label}</p>
+                        <p className='mt-0.5 text-xs font-bold text-primary sm:mt-1 sm:text-base'>{stat.value}</p>
+                        <p className={`text-[9px] font-medium sm:mt-0.5 sm:text-xs ${accentText}`}>{stat.trend}</p>
                     </div>
                 ))}
             </div>
 
-            <div className='flex flex-col gap-2'>
+            <div className='mt-3 hidden flex-col gap-2 sm:flex'>
                 <p className='text-xs font-semibold uppercase tracking-wide text-gray'>Recentes</p>
                 {content.items.map((item) => (
                     <div
@@ -209,7 +211,7 @@ export function AboutSection() {
 
     return (
         <LeadingPageLayout>
-            <div id="about" className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
+            <div id="about" className="grid grid-cols-1 gap-3 md:gap-6 lg:grid-cols-2 lg:gap-10">
                 <div className="max-lg:text-center lg:text-left [&>div]:max-lg:items-center [&>div]:lg:items-start">
                     <TitleSection
                         title="Sobre nós"
@@ -249,7 +251,7 @@ export function AboutSection() {
                                 </button>
                             ))}
                         </div>
-                        <div className='flex items-center justify-center gap-2 sm:justify-end'>
+                        <div className='hidden items-center gap-2 sm:flex sm:justify-end'>
                             {activeTabData.dotColors.map((dotColor) => (
                                 <span key={dotColor} className={`${dotColor} rounded-full p-[5px]`} />
                             ))}
