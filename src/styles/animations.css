@@ -1,1 +1,29 @@
 /* Animações globais reutilizáveis do WorkSpeed */
+
+@keyframes tab-content-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tab-progress {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@utility animate-tab-content-in {
+    animation: tab-content-in 0.45s ease-out;
+}
+
+@utility animate-tab-progress {
+    animation: tab-progress 4s linear forwards;
+}
