@@ -212,7 +212,7 @@ export function AboutSection() {
     return (
         <LeadingPageLayout>
             <div id="about" className="grid grid-cols-1 gap-3 md:gap-6 lg:grid-cols-2 lg:gap-10">
-                <div className="max-lg:text-center lg:text-left [&>div]:max-lg:items-center [&>div]:lg:items-start">
+                <div className="lg:text-left">
                     <TitleSection
                         title="Sobre nós"
                         subtitle="Um ERP que se molda ao seu negócio."
@@ -220,7 +220,8 @@ export function AboutSection() {
                         Na WorkSpeed fazemos o contrário. Entendemos seus processos, sua cultura e 
                         suas dores, e construímos um ERP que reflete exatamente como sua operação funciona 
                         - só que muito mais rápido, organizado e conectado."
-                        align="left" />
+                        align="center"
+                        className="lg:items-start lg:text-left" />
 
                     <AdaptationMetrics />
                 </div>

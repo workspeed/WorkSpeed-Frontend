@@ -1,4 +1,8 @@
+export { AnimatedModule } from './components/ui/animated-module'
+export type { AnimatedModuleProps, ModuleVariant } from './components/ui/animated-module'
 export { Nav } from './components/Nav'
 export { HeroSection } from './components/HeroSection'
 export { AboutSection } from './components/AboutSection'
+export { Features } from './components/Features'
 export { LandingPage } from './pages/LandingPage'
+
