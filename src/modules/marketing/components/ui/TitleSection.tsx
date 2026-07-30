@@ -4,13 +4,21 @@ type TitleSectionProps = {
     subtitle: string
     description?: string
     align: 'left' | 'center' | 'right'
+    className?: string
 }
-export default function TitleSection({ title, subtitle, description, align }: TitleSectionProps) {
+
+const ALIGN_CLASSES = {
+    left: 'items-start text-left',
+    center: 'items-center text-center',
+    right: 'items-end text-right',
+} as const
+
+export default function TitleSection({ title, subtitle, description, align, className }: TitleSectionProps) {
     return (
-        <div className={`flex flex-col items-${align} justify-center gap-3`}>
-            <h2 className="md:text-base text-sm font-bold uppercase text-orange">{title}</h2>
-            <h3 className="md:text-3xl text-2xl font-bold">{subtitle}</h3>
-            <p className="text-gray text-base">{description}</p>
+        <div className={`flex flex-col justify-center gap-3 ${ALIGN_CLASSES[align]} ${className ?? ''}`}>
+            <h2 className='text-sm font-bold uppercase text-orange md:text-base'>{title}</h2>
+            <h3 className='text-2xl font-bold md:text-3xl'>{subtitle}</h3>
+            {description ? <p className='text-base text-gray'>{description}</p> : null}
         </div>
     )
 }
