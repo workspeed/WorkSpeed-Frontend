@@ -18,14 +18,17 @@ export function Nav() {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 border-b-2 border-gray/20 px-5 py-5 transition-colors ${
+            className={`fixed top-0 left-0 right-0 z-50 border-b-2 border-gray/20 px-8 py-4 transition-colors ${
                 isMenuOpen
                     ? 'bg-background-white shadow-lg'
                     : 'bg-background-white lg:bg-background-white'
             }`}
         >
-            <div className='flex items-center justify-between'>
-                <img src='/logo.png' alt='WorkSpeed' className='w-30' />
+            <div className='flex items-center justify-between ml-5'>
+                <div className='flex'>
+                    <img src='/logoW.png' alt='WorkSpeed' className='w-12' />
+                    <p className='text-primary font-semibold italic'>orkSpeed</p>
+                </div>
 
                 <ul className='hidden items-center justify-center gap-8 font-medium text-gray lg:flex'>
                     {navLinks.map((link) => (
