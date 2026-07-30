@@ -10,6 +10,7 @@
     --color-orange: #DF6900;
     --color-yellow: #F8CB38;
     --color-gray: #626975;
+    --color-gray-light: #B5AEC8;
     --color-purple: #613EBE;
 
     /*** Backgrounds ***/
@@ -26,4 +27,18 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+}
+
+@utility bg-gradient-primary {
+    background: var(--gradient-primary);
+}
+
+@utility border-gradient-primary {
+    background:
+        linear-gradient(
+            color-mix(in srgb, var(--color-background-white) 95%, transparent),
+            color-mix(in srgb, var(--color-background-white) 95%, transparent)
+        ) padding-box,
+        var(--gradient-primary) border-box;
+    border: 2px solid transparent;
 }

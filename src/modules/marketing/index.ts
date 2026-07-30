@@ -3,7 +3,7 @@ export type { AnimatedModuleProps, ModuleVariant } from './components/ui/animate
 export { Nav } from './components/Nav'
 export { HeroSection } from './components/HeroSection'
 export { AboutSection } from './components/AboutSection'
-export { Features } from './components/Features'
+// export { Features } from './components/Features'
 export { OperationSection } from './components/OperationSection'
 export { LandingPage } from './pages/LandingPage'
 

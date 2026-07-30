@@ -1,124 +1,187 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
 import LeadingPageLayout from '@/layouts/LeadingPageLayout'
 import TitleSection from './ui/TitleSection'
 import HorizontalLine from './ui/HorizontalLine'
-import { FeatureContent } from './features/FeatureContent'
-import { ACCENT_STYLES, FEATURE_CATEGORIES } from './features/features-data'
-import type { CategoryId } from './features/features-data'
+
+const MODULES = [
+    {
+        id: 1,
+        name: 'FINANCEIRO',
+        title: 'Cada real sob controle',
+        description:
+            'Receitas, despesas e conciliação no mesmo lugar — sem planilha paralela.',
+        features: [
+            'Contas a pagar e receber',
+            'Conciliação bancária automática',
+            'Alertas de vencimento',
+        ],
+        footer: 'Relatórios e fluxos moldados ao seu regime contábil.',
+    },
+    {
+        id: 2,
+        name: 'OPERAÇÃO',
+        title: 'Sua operação funcionando em sintonia',
+        description:
+            'Organize processos, equipes e atividades em um único ambiente.',
+        features: [
+            'Gestão de processos',
+            'Acompanhamento de tarefas',
+            'Controle operacional em tempo real',
+        ],
+        footer: 'Fluxos personalizados para a realidade da sua empresa.',
+    },
+    {
+        id: 3,
+        name: 'COMERCIAL',
+        title: 'Mais controle sobre suas vendas',
+        description:
+            'Acompanhe oportunidades, clientes e resultados comerciais sem perder o fio da meada.',
+        features: [
+            'Gestão de clientes',
+            'Funil de vendas',
+            'Acompanhamento de oportunidades',
+        ],
+        footer: 'Uma visão clara para transformar oportunidades em resultados.',
+    },
+    {
+        id: 4,
+        name: 'ADMINISTRAÇÃO',
+        title: 'Gestão centralizada e inteligente',
+        description:
+            'Tenha uma visão completa da sua empresa para tomar decisões melhores.',
+        features: [
+            'Controle de usuários',
+            'Permissões personalizadas',
+            'Indicadores estratégicos',
+        ],
+        footer: 'Mais clareza para administrar cada parte do negócio.',
+    },
+]
 
 export function Features() {
-    const [activeCategoryId, setActiveCategoryId] = useState<CategoryId>('financeiro')
-    const [activeModuleLabel, setActiveModuleLabel] = useState(FEATURE_CATEGORIES[0].modules[0].label)
-
-    const activeCategory =
-        FEATURE_CATEGORIES.find((category) => category.id === activeCategoryId) ?? FEATURE_CATEGORIES[0]
-    const activeModule =
-        activeCategory.modules.find((module) => module.label === activeModuleLabel) ?? activeCategory.modules[0]
-    const accent = ACCENT_STYLES[activeCategory.accent]
-
-    const handleCategoryChange = (categoryId: CategoryId) => {
-        const category = FEATURE_CATEGORIES.find((item) => item.id === categoryId) ?? FEATURE_CATEGORIES[0]
-        setActiveCategoryId(categoryId)
-        setActiveModuleLabel(category.modules[0].label)
-    }
+    const [activeModule, setActiveModule] = useState(MODULES[0])
 
     return (
         <LeadingPageLayout>
-            <div id='features' className='py-15'>
+            <div id="features" className="py-15">
                 <TitleSection
-                    title='funcionalidades'
-                    subtitle='Tudo o que sua empresa precisa em uma única plataforma.'
-                    description='Módulos integrados que podem ser utilizados juntos ou personalizados conforme sua operação.'
-                    align='center'
+                    title="funcionalidades"
+                    subtitle="Tudo o que sua empresa precisa em uma única plataforma."
+                    description="Módulos integrados que podem ser utilizados juntos ou personalizados conforme sua operação."
+                    align="center"
                 />
 
-                <p className='mx-auto mt-4 max-w-xl text-center text-xs text-gray sm:text-sm'>
+                <p className="mx-auto mt-4 max-w-xl text-center text-xs text-gray sm:text-sm">
                     Escolha uma área. Cada módulo se adapta ao seu negócio.
                 </p>
 
-                {/* Abas de categoria */}
-                <div className='mt-6 grid w-full grid-cols-2 gap-2 sm:mt-8 sm:flex sm:flex-wrap sm:justify-center sm:gap-4'>
-                    {FEATURE_CATEGORIES.map(({ id, label, icon: Icon, accent: categoryAccent }) => {
-                        const isActive = activeCategoryId === id
-                        const tabAccent = ACCENT_STYLES[categoryAccent]
-
-                        return (
-                            <button
-                                key={id}
-                                type='button'
-                                onClick={() => handleCategoryChange(id)}
-                                className={`flex cursor-pointer items-center justify-center gap-1.5 rounded-lg border px-2 py-2 text-xs transition-colors sm:gap-2 sm:px-4 sm:py-2 sm:text-sm ${
-                                    isActive
-                                        ? `${tabAccent.badge} border-transparent text-white`
-                                        : `${tabAccent.bg} ${tabAccent.border} border text-primary hover:opacity-80`
-                                }`}
-                            >
-                                <Icon className={`shrink-0 text-lg sm:text-2xl ${isActive ? 'text-white' : tabAccent.text}`} />
-                                <span className='leading-tight'>{label}</span>
-                            </button>
-                        )
-                    })}
-                </div>
-
-                <div className='mt-6 grid grid-cols-1 gap-4 sm:mt-8 sm:gap-6 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8'>
+                {/* Conteúdo do módulo */}
+                <div className="w-fit mx-auto grid grid-cols-1 gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16 ">
                     {/* Menu lateral */}
-                    <nav className='overflow-hidden rounded-xl border border-black/5 bg-white sm:rounded-2xl'>
-                        <p className={`border-b border-black/5 px-3 py-2 text-[10px] font-semibold uppercase tracking-wide sm:px-4 sm:py-3 sm:text-xs ${accent.text}`}>
-                            {activeCategory.label}
-                        </p>
-                        <ul className='flex gap-1.5 overflow-x-auto p-2 scrollbar-none sm:gap-2 sm:p-3 lg:flex-col lg:gap-1 lg:overflow-x-visible lg:p-2'>
-                            {activeCategory.modules.map((module) => {
-                                const isActive = activeModuleLabel === module.label
+                    <div className="hidden lg:block">
+                        <div className="sticky top-8 space-y-4">
+                            {MODULES.map((module) => {
+                                const isActive = activeModule.id === module.id
 
                                 return (
-                                    <li key={module.label} className='shrink-0 lg:shrink'>
-                                        <button
-                                            type='button'
-                                            onClick={() => setActiveModuleLabel(module.label)}
-                                            className={`cursor-pointer whitespace-nowrap rounded-lg px-3 py-2 text-left text-xs transition-colors sm:px-4 sm:py-2.5 sm:text-sm lg:w-full lg:px-3 ${
+                                    <button
+                                        key={module.id}
+                                        onClick={() => setActiveModule(module)}
+                                        className={`
+                                            block w-full border-l-2 py-2 pl-4
+                                            text-left text-sm transition-all
+                                            ${
                                                 isActive
-                                                    ? `${accent.bg} font-semibold text-primary ring-1 ${accent.ring}`
-                                                    : 'text-gray hover:bg-background hover:text-primary'
-                                            }`}
-                                        >
-                                            {module.label}
-                                        </button>
-                                    </li>
+                                                    ? 'border-secondary font-semibold text-primary'
+                                                    : 'border-gray-200 text-gray hover:border-gray-400'
+                                            }
+                                        `}
+                                    >
+                                        {module.name}
+                                    </button>
                                 )
                             })}
-                        </ul>
-                    </nav>
-
-                    {/* Painel de conteúdo — layout único por categoria */}
-                    <div className='overflow-hidden rounded-xl bg-white ring-1 ring-black/5 sm:rounded-2xl'>
-                        <div className={`border-b border-black/5 bg-linear-to-r ${accent.gradient} px-4 py-4 sm:px-6`}>
-                            <div className='flex min-w-0 items-center gap-2'>
-                                <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[10px] font-semibold text-white sm:text-xs ${accent.badge}`}>
-                                    {activeCategory.label}
-                                </span>
-                                <span className='truncate text-xs font-semibold text-primary sm:text-sm'>
-                                    {activeModule.label}
-                                </span>
-                            </div>
-                            <p className='mt-2 text-xs text-gray'>{activeCategory.tagline}</p>
                         </div>
+                    </div>
 
-                        <div className='px-4 py-6 sm:px-8 sm:py-8'>
-                            <FeatureContent
-                                moduleKey={`${activeCategoryId}-${activeModuleLabel}`}
-                                category={activeCategory}
-                                module={activeModule}
-                            />
+                    {/* Conteúdo principal */}
+                    <div className="min-h-100">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={activeModule.id}
+                                initial={{
+                                    opacity: 0,
+                                    y: 20,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    y: 0,
+                                }}
+                                exit={{
+                                    opacity: 0,
+                                    y: -20,
+                                }}
+                                transition={{
+                                    duration: 0.35,
+                                    ease: 'easeOut',
+                                }}
+                            >
+                                {/* Título */}
+                                <h3 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-primary sm:text-4xl">
+                                    {activeModule.title}
+                                </h3>
 
-                            <p className='mt-8 border-t border-black/5 pt-5 text-xs text-gray'>
-                                <span className={`font-semibold ${accent.text}`}>Sob medida · </span>
-                                {activeCategory.adaptationLine}
-                            </p>
-                        </div>
+                                {/* Descrição */}
+                                <p className="mt-4 max-w-xl text-base leading-relaxed text-gray">
+                                    {activeModule.description}
+                                </p>
+
+                                {/* Lista de funcionalidades */}
+                                <ul className="mt-8 grid max-w-2xl gap-4 sm:grid-cols-2">
+                                    {activeModule.features.map((feature, index) => (
+                                        <motion.li
+                                            key={feature}
+                                            initial={{
+                                                opacity: 0,
+                                                x: -10,
+                                            }}
+                                            animate={{
+                                                opacity: 1,
+                                                x: 0,
+                                            }}
+                                            transition={{
+                                                delay: index * 0.08,
+                                                duration: 0.3,
+                                            }}
+                                            className="flex items-center gap-3 text-sm text-primary"
+                                        >
+                                            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-white">
+                                                ✓
+                                            </span>
+
+                                            {feature}
+                                        </motion.li>
+                                    ))}
+                                </ul>
+
+                                {/* Linha divisória */}
+                                <div className="my-8 h-px w-full bg-gray-200" />
+
+                                {/* Rodapé do módulo */}
+                                <p className="max-w-2xl text-sm leading-relaxed text-gray">
+                                    <span className="font-semibold text-secondary">
+                                        Sob medida ·{' '}
+                                    </span>
+
+                                    {activeModule.footer}
+                                </p>
+                            </motion.div>
+                        </AnimatePresence>
                     </div>
                 </div>
 
-                <div className='mt-8 sm:mt-12'>
+                <div className="mt-8 sm:mt-12">
                     <HorizontalLine />
                 </div>
             </div>

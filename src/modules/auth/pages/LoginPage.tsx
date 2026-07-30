@@ -1,9 +1,11 @@
+import { LayoutLogin } from '../components/LayoutLogin'
 import { LoginForm } from '../components/LoginForm'
+import { LoginSidePanel } from '../components/LoginSidePanel'
 
 export function LoginPage() {
   return (
-    <main className="bg-background">
+    <LayoutLogin aside={<LoginSidePanel />}>
       <LoginForm />
-    </main>
+    </LayoutLogin>
   )
 }

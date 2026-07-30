@@ -1,7 +1,7 @@
 import { HeroSection } from '../components/HeroSection'
 import { AboutSection } from '../components/AboutSection'
 import { OperationSection } from '../components/OperationSection'
-import { Features } from '../components/Features'
+// import { Features } from '../components/Features'
 
 export function LandingPage() {
   return (
@@ -9,7 +9,7 @@ export function LandingPage() {
       <HeroSection />
       <AboutSection />
       <OperationSection />
-      <Features />
+      {/*<Features />*/}
     </main>
   )
 }
